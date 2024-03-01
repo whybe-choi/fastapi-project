@@ -2,11 +2,9 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-# FastAPI 서버에 root path로 get 요청을 보내면 아래의 함수가 실행되어 api 응답을 보낸다.
 @app.get("/")
 def health_check_handler():
     return {"ping" : "pong"}
-
 
 todo_data = {
     1: {
@@ -26,6 +24,15 @@ todo_data = {
     },
 }
 
+# 전체 To-Do 조회
 @app.get("/todos")
-def get_todos_handler():
-    return list(todo_data.values())
+def get_todos_handler(order : str | None = None):
+    ret = list(todo_data.values())
+    if order == "DESC":
+        return ret[::-1]
+    return ret
+
+# 단일 To-Do 조회
+@app.get("/todos/{todo_id}")
+def get_todo_handler(todo_id : int):
+    return todo_data.get(todo_id, {})
