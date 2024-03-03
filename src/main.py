@@ -49,6 +49,7 @@ def create_todo_handler(request: CreateToDoRequest):
     todo_data[request.id] = request.dict()
     return todo_data[request.id]
 
+# To-Do 수정
 @app.patch("/todos/{todo_id}")
 def update_todo_handler(
     todo_id : int, 
@@ -59,3 +60,9 @@ def update_todo_handler(
         todo["is_done"] = is_done
         return todo
     return {}
+
+# To-Do 삭제
+@app.delete("/todos/{todo_id}")
+def delete_todo_handler(todo_id : int):
+    todo_data.pop(todo_id, None)
+    return todo_data
