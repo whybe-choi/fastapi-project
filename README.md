@@ -17,5 +17,5 @@ uvicorn src.main:app --reload
 docker run -p 3306:3306 \
             -e MYSQL_ROOT_PASSWORD=todos \
             -e MYSQL_DATABASE=todos -d \
-             -v todos:/db --name todos mysql:8.0
+            -v todos:/db --name todos mysql:8.0
 ```
