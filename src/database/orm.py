@@ -1,6 +1,8 @@
 from sqlalchemy import Boolean, Column, Integer, String
 from sqlalchemy.orm import declarative_base
 
+from schema.request import CreateToDoRequest
+
 Base = declarative_base()
 
 class ToDo(Base):
@@ -13,3 +15,11 @@ class ToDo(Base):
     # 객체를 출력할 때 보기 쉬운 형태로 보기 위해서 repr이라는 magic method를 override
     def __repr__(self):
         return f"Todo(id={self.id}, contents={self.contents}, is_done={self.is_done})"
+    
+    # Class variable에 access하기 위한 class method
+    @classmethod
+    def create(cls, request: CreateToDoRequest) -> "ToDo":
+        return cls(
+            contents=request.contents,
+            is_done=request.is_done
+        )
