@@ -10,7 +10,8 @@ pip install -r requirements.txt
 ```
 2. 서버 실행
 ```shell
-uvicorn src.main:app --reload
+cd src
+uvicorn main:app --reload
 ```
 3. 데이터 베이스를 위한 도커 컨테이너 실행
 ```shell
