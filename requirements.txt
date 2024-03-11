@@ -4,4 +4,4 @@ sqlalchemy
 pymysql
 cryptography
 pytest
-https
+httpx
