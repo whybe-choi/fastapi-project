@@ -4,4 +4,4 @@ sqlalchemy
 pymysql
 cryptography
 pytest
-httpx
+httpx == 0.24.1
