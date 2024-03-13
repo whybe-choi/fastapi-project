@@ -5,3 +5,4 @@ pymysql
 cryptography
 pytest
 httpx == 0.24.1
+pytest-mock
