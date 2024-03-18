@@ -1,4 +1,3 @@
-from re import T
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import declarative_base, relationship
 from schema.request import CreateToDoRequest
