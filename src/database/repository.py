@@ -3,7 +3,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import select, delete
 from database.connection import get_db
-from database.orm import ToDo
+from database.orm import ToDo, User
 
 class ToDoRepository:
     def __init__(self, session: Session = Depends(get_db)):
@@ -31,3 +31,13 @@ class ToDoRepository:
         self.session.execute(delete(ToDo).where(ToDo.id == todo_id))
         self.session.commit()
         return None
+    
+class UserRepository:
+    def __init__(self, session: Session = Depends(get_db)):
+        self.session = session
+
+    def save_user(self, user: User) -> User:
+        self.session.add(instance=user)
+        self.session.commit()
+        self.session.refresh(instance=user)
+        return user
