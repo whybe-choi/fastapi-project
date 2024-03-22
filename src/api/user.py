@@ -27,3 +27,12 @@ def user_sign_up_handler(
     user: User = user_repo.save_user(user=user) # id : int
     # 5. return user(id, username)
     return UserSchema.from_orm(user)
+
+@router.post("/log-in")
+def user_log_in_handler():
+    # 1. request body(username, password)
+    # 2. db read user
+    # 3. user.password, request.password -> bcrypt.checkpw
+    # 4. create jwt
+    # 5. return jwt
+    return True
