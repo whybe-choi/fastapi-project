@@ -6,3 +6,11 @@ class UserService:
     def hash_password(self, plain_password: str) -> str:
         hashed_password: bytes = bcrypt.hashpw(plain_password.encode(self.encoding), salt=bcrypt.gensalt())
         return hashed_password.decode(self.encoding)
+    
+    def verify_password(
+        self, plain_password: str, hahsed_password: str
+    ) -> bool :
+        return bcrypt.checkpw(
+            plain_password.encode(self.encoding), 
+            hahsed_password.encode(self.encoding)
+        )
