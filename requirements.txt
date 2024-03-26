@@ -7,3 +7,4 @@ pytest
 httpx == 0.24.1
 pytest-mock
 bcrypt
+python-jose
