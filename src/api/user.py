@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from schema.request import LoginRequest, SignUpRequest
-from schema.response import UserSchema
+from schema.response import JWTResponse, UserSchema
 from database.orm import User
 from database.repository import UserRepository
 from service.user import UserService
@@ -51,7 +51,7 @@ def user_log_in_handler(
         raise HTTPException(status_code=401, detail="Not Authorized")
     
     # 4. create jwt
-    jwt = user_service.create_jwt(username=user.username)
+    access_token: str = user_service.create_jwt(username=user.username)
 
     # 5. return jwt
-    return jwt
+    return JWTResponse(access_token=access_token)
